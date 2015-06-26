@@ -3,9 +3,8 @@ Søk i enhetsregisteret
 # Installasjon
 
 ```shell
-$ git clone https://github.com/espen/brreg.git
-$ cd brreg
-$ brreg.rb -h
+$ gem install brreg
+$ brreg -h
 ```
 
 # I bruk
