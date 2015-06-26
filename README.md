@@ -1,36 +1,52 @@
-# Brreg
+Søk i enhetsregisteret
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/brreg`. To experiment with that code, run `bin/console` for an interactive prompt.
+# Installasjon
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'brreg'
+```shell
+$ git clone https://github.com/espen/brreg.git
+$ cd brreg
+$ brreg.rb -h
 ```
 
-And then execute:
+# I bruk
 
-    $ bundle
+```shell
+brreg [options]
+-n, --orgnr ORGNR                Organisasjonsnummer
+-q, --query QUERY                Firmanavn
+-d, --domain DOMAIN              Domenenavn (kun .no)
+-v, --version                    Versjon
+```
 
-Or install it yourself as:
+# Eksempel
 
-    $ gem install brreg
+```shell
+~ brreg inspired
+Søker etter 'inspired'
+...............
+994502085 GET INSPIRED AS
+996617742 INSPIRED BY ADELINA GRENMAR
+992842318 INDIGO INSPIRED INITIATIVE STENSRUD
+999205224 UNGDOMSBEDRIFTEN INSPIRED
+999309755 INSPIRED UNGDOMSBEDRIFT
+994317318 INSPIRED THINKING Wenche A Buchman
+990610924 INSPIRED AS
+~ brreg 990610924
+Viser oppføring for orgnr 990610924
+...............
+INSPIRED AS
+Nustadsløyfa 41
+3970 LANGESUND
+c/o Espen Antonsen Sverdrups gate 26B
+0559 OSLO
+~ brreg makeplans.no
+Viser oppføring for orgnr 990610924
+...............
+INSPIRED AS
+Nustadsløyfa 41
+3970 LANGESUND
+c/o Espen Antonsen Sverdrups gate 26B
+0559 OSLO
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/brreg.
-
+Basert på Whois fra domenet makeplans.no
+```
