@@ -1,13 +1,15 @@
-Søk i enhetsregisteret
+# Søk i Enhetsregisteret i Brønnøysundregisteret
 
-# Installasjon
+Søk i Enhetsregisteret basert på firmanavn, organisasjonsnummer eller ved oppslag på norske domener hos Norid.
+
+## Installasjon
 
 ```shell
 $ gem install brreg
 $ brreg -h
 ```
 
-# I bruk
+## I bruk
 
 ```shell
 brreg [options]
@@ -17,7 +19,7 @@ brreg [options]
 -v, --version                    Versjon
 ```
 
-# Eksempel
+## Eksempel
 
 ```shell
 ~ brreg inspired
@@ -30,6 +32,7 @@ Søker etter 'inspired'
 999309755 INSPIRED UNGDOMSBEDRIFT
 994317318 INSPIRED THINKING Wenche A Buchman
 990610924 INSPIRED AS
+
 ~ brreg 990610924
 Viser oppføring for orgnr 990610924
 ...............
@@ -38,6 +41,7 @@ Nustadsløyfa 41
 3970 LANGESUND
 c/o Espen Antonsen Sverdrups gate 26B
 0559 OSLO
+
 ~ brreg makeplans.no
 Viser oppføring for orgnr 990610924
 ...............

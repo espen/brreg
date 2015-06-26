@@ -21,7 +21,7 @@ opts = OptionParser.new do |opt|
     cli_params[:domain] = domain
   end
 
-  opt.on('-v', '--version', 'Versjon') { puts "Brreg query version 0.1.2"; exit }
+  opt.on('-v', '--version', 'Versjon') { puts "Brreg version #{Brreg.version}"; exit }
 end
 begin
   opts.parse!

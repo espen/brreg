@@ -68,6 +68,10 @@ module Brreg
     end
   end
 
+  def self.version
+    VERSION
+  end
+
   private
 
   def self.get_json(params)
