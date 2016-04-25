@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 
 module Brreg
-  BrregURI = 'http://hotell.difi.no/api/json/brreg/enhetsregisteret'
+  BrregURI = 'https://hotell.difi.no/api/json/brreg/enhetsregisteret'
   def self.find_by_orgnr(orgnr)
     res = get_json( { :orgnr => orgnr } )
     if res.is_a?(Net::HTTPSuccess)
