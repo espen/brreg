@@ -37,19 +37,21 @@ Søker etter 'inspired'
 Viser oppføring for orgnr 990610924
 ...............
 INSPIRED AS
-Nustadsløyfa 41
-3970 LANGESUND
-c/o Espen Antonsen Sverdrups gate 26B
+Sverdrups gate 26B
 0559 OSLO
+Postadresse:
+Postboks 218 Sentrum
+0103 OSLO
 
 ~ brreg makeplans.no
-Viser oppføring for orgnr 990610924
+Viser oppføring for orgnr 817201342
 ...............
-INSPIRED AS
-Nustadsløyfa 41
-3970 LANGESUND
-c/o Espen Antonsen Sverdrups gate 26B
+MAKEPLANS AS
+Sverdrups gate 26B
 0559 OSLO
+Postadresse:
+c/o Inspired AS Postboks 218 Sentrum
+0103 OSLO
 
 Basert på Whois fra domenet makeplans.no
 ```
