@@ -4,14 +4,14 @@ Søk i Enhetsregisteret basert på firmanavn, organisasjonsnummer eller ved opps
 
 ## Installasjon
 
-```shell
+```
 $ gem install brreg
 $ brreg -h
 ```
 
 ## I bruk
 
-```shell
+```
 brreg [options]
 -n, --orgnr ORGNR                Organisasjonsnummer
 -q, --query QUERY                Firmanavn
@@ -21,7 +21,7 @@ brreg [options]
 
 ## Eksempel
 
-```shell
+```console
 ~ brreg inspired
 Søker etter 'inspired'
 ...............
