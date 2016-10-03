@@ -10,7 +10,7 @@ opts = OptionParser.new do |opt|
   opt.banner = "Usage: brreg [options] OR brreg orgnr/query/domain"
 
   opt.on('-n', '--orgnr ORGNR', 'Organisasjonsnummer') do |orgnr|
-    cli_params[:orgnr] = orgnr.to_i
+    cli_params[:orgnr] = orgnr
   end
 
   opt.on('-q', '--query QUERY', 'Firmanavn') do |query|
@@ -30,10 +30,9 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit
 end
 
-def numeric?(object)
-  true if Float(object) rescue false
+def is_orgnr?(object)
+  object.class == String && object.gsub(/\D/, '').length == 9
 end
-
 
 if cli_params.length > 0
   if cli_params[:orgnr]
@@ -44,9 +43,9 @@ if cli_params.length > 0
     Brreg.find_by_domain( cli_params[:domain])
   end
 elsif ARGV.length > 0
-  input = ARGV.first
-  if numeric?(input)
-    Brreg.find_by_orgnr( input.to_i )
+  input = ARGV.join(' ')
+  if is_orgnr?(input)
+    Brreg.find_by_orgnr( input )
   elsif input.include?('.no')
     Brreg.find_by_domain( input )
   else

@@ -5,16 +5,17 @@ require 'json'
 module Brreg
   BrregURI = 'https://hotell.difi.no/api/json/brreg/enhetsregisteret'
   def self.find_by_orgnr(orgnr)
-    if !orgnr || orgnr.class != String
+    if !orgnr
       puts "Ugyldig verdi"
       return false
-    end
-    if orgnr
-      orgnr = orgnr.gsub(/\D/, '')
-    end
-    if orgnr.empty? || orgnr.length != 11
-      puts "Ugyldig verdi"
-      return false
+    else
+      if orgnr.class == String
+        orgnr = orgnr.gsub(/\D/, '')
+        if orgnr.empty? || orgnr.length != 9
+          puts "Ugyldig verdi"
+          return false
+        end
+      end
     end
     res = get_json( { :orgnr => orgnr } )
     if res.is_a?(Net::HTTPSuccess)
@@ -44,7 +45,7 @@ module Brreg
     if res.gsub('Id Number').first
       orgnr = /\Id Number..................:\s(\d{9})/
       if res.match(orgnr)
-        Brreg.find_by_orgnr( res.scan(orgnr).first.first.to_i )
+        Brreg.find_by_orgnr( res.scan(orgnr).first.first )
         puts "\nBasert på Whois fra domenet #{domain}"
       else
         puts "Domenet har ikke et vanlig orgnr."
