@@ -5,6 +5,17 @@ require 'json'
 module Brreg
   BrregURI = 'https://hotell.difi.no/api/json/brreg/enhetsregisteret'
   def self.find_by_orgnr(orgnr)
+    if !orgnr || orgnr.class != String
+      puts "Ugyldig verdi"
+      return false
+    end
+    if orgnr
+      orgnr = orgnr.gsub(/\D/, '')
+    end
+    if orgnr.empty?
+      puts "Ugyldig verdi"
+      return false
+    end
     res = get_json( { :orgnr => orgnr } )
     if res.is_a?(Net::HTTPSuccess)
       jsonres = JSON.parse(res.body)
