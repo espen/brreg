@@ -12,7 +12,7 @@ module Brreg
     if orgnr
       orgnr = orgnr.gsub(/\D/, '')
     end
-    if orgnr.empty?
+    if orgnr.empty? || orgnr.length != 11
       puts "Ugyldig verdi"
       return false
     end
