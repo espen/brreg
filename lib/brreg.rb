@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 
 module Brreg
-  BrregURI = 'https://hotell.difi.no/api/json/brreg/enhetsregisteret'
+  BrregURI = 'https://data.brreg.no/enhetsregisteret/api/enheter'
   def self.find_by_orgnr(orgnr)
     if !orgnr
       puts "Ugyldig verdi"
@@ -17,21 +17,22 @@ module Brreg
         end
       end
     end
-    res = get_json( { :orgnr => orgnr } )
+    res = get_json( { :organisasjonsnummer => orgnr } )
     if res.is_a?(Net::HTTPSuccess)
       jsonres = JSON.parse(res.body)
-      if jsonres['posts'].to_i > 0
-        company = jsonres['entries'].first
+      matches = jsonres['_embedded']['enheter']
+      if matches.length > 0
+        company = matches.first
         puts "\n"
         puts "\e[32mViser oppføring for orgnr #{orgnr}\e[0m"
         puts "\n"
         puts company['navn']
-        puts company['forretningsadr']
-        puts company['forradrpostnr'] + ' ' + company['forradrpoststed']
+        puts company['forretningsadresse']['adresse']
+        puts company['forretningsadresse']['postnummer'] + ' ' + company['forretningsadresse']['poststed']
         if !company['postadresse'].empty?
           puts 'Postadresse:'
-          puts company['postadresse']
-          puts company['ppostnr'] + ' ' + company['ppoststed']
+          puts company['postadresse']['adresse']
+          puts company['postadresse']['postnummer'] + ' ' + company['postadresse']['poststed']
         end
       else
         puts "Fant ingen oppføring for #{orgnr}"
@@ -61,17 +62,17 @@ module Brreg
     puts "\n"
     puts "\e[32mTreff i Enhetsregisteret basert på søket '#{query}'\e[0m"
     puts "\n"
-    res = self.get_json( { :query => query } )
+    res = self.get_json( { :navn => query } )
     if res.is_a?(Net::HTTPSuccess)
       jsonres = JSON.parse(res.body)
-      matches = jsonres['posts'].to_i
-      if matches > 0
-        if matches == 1
+      matches = jsonres['_embedded']['enheter']
+      if matches.length > 0
+        if matches.length == 1
           puts "Fant 1 oppføring"
-          Brreg.find_by_orgnr( jsonres['entries'].first['orgnr'] )
+          Brreg.find_by_orgnr( matches.first['organisasjonsnummer'] )
         else
-          for entry in jsonres['entries']
-            puts entry['orgnr'] + ' ' + entry['navn']
+          for entry in matches
+            puts entry['organisasjonsnummer'] + ' ' + entry['navn']
           end
         end
       else
