@@ -29,7 +29,7 @@ module Brreg
         puts company['navn']
         puts company['forretningsadresse']['adresse']
         puts company['forretningsadresse']['postnummer'] + ' ' + company['forretningsadresse']['poststed']
-        if !company['postadresse'].empty?
+        if company['postadresse']
           puts 'Postadresse:'
           puts company['postadresse']['adresse']
           puts company['postadresse']['postnummer'] + ' ' + company['postadresse']['poststed']
