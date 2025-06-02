@@ -36,6 +36,7 @@ module Brreg
           puts company['postadresse']['adresse']
           puts company['postadresse']['postnummer'] + ' ' + company['postadresse']['poststed']
         end
+        return company
       else
         puts "Fant ingen oppføring for #{orgnr}"
       end
@@ -48,8 +49,9 @@ module Brreg
     if res.gsub('Id Number').first
       orgnr = /\Id Number..................:\s(\d{9})/
       if res.match(orgnr)
-        Brreg.find_by_orgnr( res.scan(orgnr).first.first )
+        company = Brreg.find_by_orgnr(res.scan(orgnr).first.first)
         puts "\nBasert på Whois fra domenet #{domain}"
+        return company
       else
         puts "Domenet har ikke et vanlig orgnr."
       end
@@ -76,6 +78,7 @@ module Brreg
           for entry in matches
             puts entry['organisasjonsnummer'] + ' ' + entry['navn']
           end
+          return matches
         end
       else
         puts "Fant ingen oppføringer med navn #{query}"
