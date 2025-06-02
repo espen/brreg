@@ -27,10 +27,12 @@ module Brreg
         puts "\e[32mViser oppføring for orgnr #{orgnr}\e[0m"
         puts "\n"
         puts company['navn']
-        puts company['forretningsadresse']['adresse']
-        puts company['forretningsadresse']['postnummer'] + ' ' + company['forretningsadresse']['poststed']
+        if company['forretningsadresse']
+          puts company['forretningsadresse']['adresse']
+          puts company['forretningsadresse']['postnummer'] + ' ' + company['forretningsadresse']['poststed']
+        end
         if company['postadresse']
-          puts 'Postadresse:'
+          puts 'Postadresse:' if company['forretningsadresse']
           puts company['postadresse']['adresse']
           puts company['postadresse']['postnummer'] + ' ' + company['postadresse']['poststed']
         end
